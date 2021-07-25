@@ -9,12 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class CaptionsController {
 	
 	@GetMapping("/health")
-	public String greeting()  {
+	public String health()  {
 		return "Running";
 	}
 	
+	@PostMapping("/refreshCaptions")
+	public String refresh() {
+		int size = GetCaption.update();
+		return "Refreshed. Cache size: " + size;
+	}
+	
 	@PostMapping("/getCaption")
-	public String post() {
+	public String get() {
 		return GetCaption.get();
 	}
 }

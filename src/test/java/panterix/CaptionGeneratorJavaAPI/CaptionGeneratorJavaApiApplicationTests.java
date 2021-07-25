@@ -8,7 +8,6 @@ class CaptionGeneratorJavaApiApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println("HERE");
 	}
 
 }
