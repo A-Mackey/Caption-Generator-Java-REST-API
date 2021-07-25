@@ -21,6 +21,7 @@ public class CaptionsController {
 	
 	@PostMapping("/getCaption")
 	public String get() {
+		System.out.println("Getting!");
 		return GetCaption.get();
 	}
 	
