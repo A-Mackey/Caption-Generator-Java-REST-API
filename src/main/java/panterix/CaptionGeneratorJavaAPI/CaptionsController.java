@@ -2,7 +2,7 @@ package panterix.CaptionGeneratorJavaAPI;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,5 +22,16 @@ public class CaptionsController {
 	@PostMapping("/getCaption")
 	public String get() {
 		return GetCaption.get();
+	}
+	
+	@PostMapping("/addCaption")
+	public String add(@RequestBody AddCaptionRequestModel body) {
+		if (GetCaption.add(body.caption, body.password)) {
+			return "Added " + body.caption;
+		}
+		else {
+			return "Unable to add " + body.caption;
+		}
+				
 	}
 }
