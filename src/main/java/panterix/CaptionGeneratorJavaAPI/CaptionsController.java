@@ -20,9 +20,11 @@ public class CaptionsController {
 	}
 	
 	@PostMapping("/getCaption")
-	public String get() {
-		System.out.println("Getting!");
-		return GetCaption.get();
+	public CaptionResponse get() {
+		CaptionResponse res = new CaptionResponse();
+		res.caption = GetCaption.get();
+		
+		return res;
 	}
 	
 	@PostMapping("/addCaption")
