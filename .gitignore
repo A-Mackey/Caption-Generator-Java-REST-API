@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 src/main/java/panterix/CaptionGeneratorJavaAPI/password.txt
+src/main/java/panterix/CaptionGeneratorJavaAPI/PasswordGetter.java
