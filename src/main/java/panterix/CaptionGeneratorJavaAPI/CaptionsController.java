@@ -39,4 +39,9 @@ public class CaptionsController {
 		}
 				
 	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return GetCaption.readFromDatabase();
+	}
 }

@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CaptionGeneratorJavaApiApplication {
 
 	public static void main(String[] args) {
-		GetCaption.update();
 		GetCaption.updatePassword();
+		GetCaption.readFromDatabase();
 		SpringApplication.run(CaptionGeneratorJavaApiApplication.class, args);
 	}
 
