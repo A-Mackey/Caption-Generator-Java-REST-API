@@ -31,17 +31,29 @@ public class CaptionsController {
 	
 	@PostMapping("/addCaption")
 	public String add(@RequestBody AddCaptionRequestModel body) {
-		if (GetCaption.add(body.caption, body.password)) {
-			return "Added " + body.caption;
+		try {
+			if (GetCaption.add(body.caption, body.password)) {
+				return "Added " + body.caption;
+			}
+			else {
+				return "Unable to add " + body.caption;
+			}
+		} catch (Exception e) {
+			return "Unable to add it";
 		}
-		else {
-			return "Unable to add " + body.caption;
-		}
-				
 	}
 	
-	@GetMapping("/test")
-	public String test() {
-		return GetCaption.readFromDatabase();
+	@PostMapping("/removeCaption")
+	public String remove(@RequestBody AddCaptionRequestModel body) {
+		try {
+			if (GetCaption.remove(body.caption, body.password)) {
+				return "Removed " + body.caption;
+			}
+			else {
+				return "Unable to remove " + body.caption;
+			}	
+		} catch (Exception e) {
+			return "Unable to remove it";
+		}	
 	}
 }

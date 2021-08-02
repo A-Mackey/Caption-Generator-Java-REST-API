@@ -30,15 +30,7 @@ public class GetCaption {
 			if (notADuplicate(caption)) {
 				captions.add(caption);
 				
-				try {
-					FileWriter out = new FileWriter(database, true);
-					out.write(caption + '\n');
-					
-					out.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				addCaptionToDatabase(caption);
 				
 				return true;
 			}
@@ -104,16 +96,57 @@ public class GetCaption {
 			e.printStackTrace();
 		}
 		
+		printCaptions();
+		
+		return r;
+	}
+	
+	public static boolean remove(String caption, String password) {
+		if(!checkPassword(password)) {return false;}
+		
+		for(int i = 0; i < captions.size(); i++) {
+			System.out.println(captions.get(i));
+			if(captions.get(i).compareTo(caption) == 0) {
+				captions.remove(i);
+				clearDatabaseAndWriteCaptions();
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private static void addCaptionToDatabase(String caption) {
+		try {
+			FileWriter out = new FileWriter(database, true);
+			out.write(caption + '\n');
+			
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static void printCaptions() {
 		System.out.println("--------------");
 		for(int o = 0; o < captions.size(); o++) {
 			System.out.println(captions.get(o));
 		}
 		System.out.println("--------------");
-		
-		return r;
 	}
 	
 	private static void clearDatabaseAndWriteCaptions() {
-		
+		try {
+			FileWriter wipe = new FileWriter(database, false);
+			wipe.write("");
+			wipe.close();
+			
+			for(int i = 0; i < captions.size(); i++) {
+				addCaptionToDatabase(captions.get(i));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
