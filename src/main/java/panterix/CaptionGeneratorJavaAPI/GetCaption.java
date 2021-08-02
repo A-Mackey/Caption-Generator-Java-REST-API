@@ -79,9 +79,7 @@ public class GetCaption {
 	
 	public static String readFromDatabase() {
 		String r = "";
-		
 		String all = "";
-		
 		try {
 			in = new FileReader(database);
 			
@@ -93,19 +91,24 @@ public class GetCaption {
 			for(int o = 0; o < all.length(); o++) {
 				if(all.charAt(o) == '\n' || o == all.length() - 1) {
 					r = r.replaceAll("(\\r\\n|\\n|\\r)", "");
-					captions.add(r + (o == all.length() - 1 ? all.charAt(o) : ""));
+					//captions.add(r + (o == all.length() - 1 ? all.charAt(o) : ""));
+					captions.add(r);
 					r = "";
 				} else {
 					r += all.charAt(o);
 				}
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("--------------");
+		for(int o = 0; o < captions.size(); o++) {
+			System.out.println(captions.get(o));
+		}
+		System.out.println("--------------");
 		
 		return r;
 	}
